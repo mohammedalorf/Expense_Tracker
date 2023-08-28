@@ -5,7 +5,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'expansesItem.dart';
 
 class ExpansesList extends StatelessWidget {
-  ExpansesList(this.expanses, {super.key});
+  ExpansesList(this.expanses, {super.key, required this.removeexpense});
+  final void Function(Expanses expanse) removeexpense;
   List<Expanses> expanses;
 
   @override
@@ -13,7 +14,12 @@ class ExpansesList extends StatelessWidget {
     return ListView.builder(
         itemCount: expanses.length,
         itemBuilder: ((context, index) {
-          return ExpansesItem(expanses[index]);
+          return Dismissible(
+              key: ValueKey(expanses[index]),
+              onDismissed: (direction) {
+                removeexpense(expanses[index]);
+              },
+              child: ExpansesItem(expanses[index]));
         }));
   }
 }

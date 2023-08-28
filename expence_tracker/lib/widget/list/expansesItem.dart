@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:expence_tracker/models/expanses.dart';
+import 'package:intl/intl.dart';
 
 class ExpansesItem extends StatelessWidget {
   ExpansesItem(this.expansesIteam, {super.key});
@@ -21,8 +22,8 @@ class ExpansesItem extends StatelessWidget {
                 Spacer(),
                 Row(
                   children: [
-                    Icon(Icons.alarm),
-                    Text(expansesIteam.date.toString())
+                    Icon(catagoryIcons[expansesIteam.catagory]),
+                    Text(expansesIteam.dateformated)
                   ],
                 )
               ],
